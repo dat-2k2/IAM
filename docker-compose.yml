@@ -1,0 +1,33 @@
+services:
+  app:
+    container_name: app
+    depends_on:
+      - db
+    env_file: .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:8888:8888"
+
+  db:
+    image: postgres:latest
+    container_name: postgres-db
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${IAM_DB_USERNAME}
+      POSTGRES_PASSWORD: ${IAM_DB_PASSWORD}
+      POSTGRES_DB: ${IAM_DB_NAME}
+    ports:
+      - '127.0.0.1:${IAM_DB_PORT}:${IAM_DB_PORT}'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d ${IAM_DB_NAME} -U ${IAM_DB_USERNAME}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
