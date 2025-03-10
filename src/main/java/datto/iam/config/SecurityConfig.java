@@ -29,7 +29,8 @@ public class SecurityConfig {
     private final PasswordEncoder passwordEncoder;
     private static final String[] WHITELIST = {
             "/login.html",
-            "/createUser",
+            "/register",
+            "/error",
             "/html/**",
             "/css/**",
             "/js/**",
