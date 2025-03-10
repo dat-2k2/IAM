@@ -1,4 +1,4 @@
-package datto.example.entities.user;
+package iam.base.entities.user;
 
 
 import jakarta.persistence.*;

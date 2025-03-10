@@ -1,9 +1,9 @@
-package datto.example.service;
+package iam.base.service;
 
-import datto.example.dto.user.RegisterForm;
-import datto.example.entities.user.User;
-import datto.example.exception.UserExistedException;
-import datto.example.repos.UserRepository;
+import iam.base.dto.user.RegisterForm;
+import iam.base.entities.user.User;
+import iam.base.exception.UserExistedException;
+import iam.base.repos.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,13 +20,23 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username).orElseThrow();
     }
 
-    public User register(RegisterForm form){
+    static void activate(User user){
+        user.setAccountNonExpired(true);
+        user.setAccountNonLocked(true);
+        user.setCredentialsNonExpired(true);
+    }
+
+    public User createUser(RegisterForm form){
         if (userRepository.findByUsername(form.getUsername()).isPresent()){
             throw new UserExistedException();
         }
-        return userRepository.save(User.builder()
+
+        User newUser = User.builder()
                 .username(form.getUsername())
                 .password(passwordEncoder.encode(form.getPassword()))
-                .build());
+                .build();
+        activate(newUser);
+
+        return userRepository.save(newUser);
     }
 }

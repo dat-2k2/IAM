@@ -1,7 +1,7 @@
-package datto.example.dto.auth;
+package iam.base.dto.auth;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import datto.example.entities.user.User;
+import iam.base.entities.user.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,4 +1,4 @@
-package datto.example.dto.auth;
+package iam.base.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

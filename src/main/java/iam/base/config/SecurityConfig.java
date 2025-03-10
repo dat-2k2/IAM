@@ -1,8 +1,8 @@
-package datto.example.config;
+package iam.base.config;
 
-import datto.example.dto.auth.UserPrincipal;
-import datto.example.service.OAuth2UserService;
-import datto.example.service.UserService;
+import iam.base.dto.auth.UserPrincipal;
+import iam.base.service.OAuth2UserService;
+import iam.base.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -27,13 +27,19 @@ public class SecurityConfig {
     private final UserService userService;
     private final OAuth2UserService oauth2UserService;
     private final PasswordEncoder passwordEncoder;
-    private final String[] WHITELIST = {
+    private static final String[] WHITELIST = {
             "/login.html",
-            "/register",
+            "/createUser",
+            "/html/**",
             "/css/**",
             "/js/**",
-            "/swagger-ui/index.html"
+            "/swagger-ui/index.html",
     };
+
+    private static final String HOME_ENDPOINT = "/user";
+    private static final String LOGOUT_URL = "/auth/logout";
+    private static final String LOGIN_PAGE = "/login.html";
+
     @Bean
     public SecurityFilterChain basicFilterChain(HttpSecurity http) throws Exception {
         log.warn("Configuring http filterChain");
@@ -44,18 +50,18 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
                 .formLogin(formConigurer ->{
                     Customizer.withDefaults().customize(formConigurer);
-                    formConigurer.defaultSuccessUrl("/user");
+                    formConigurer.defaultSuccessUrl(HOME_ENDPOINT);
                 })
                 .oauth2Login(oauth2 -> {
                     Customizer.withDefaults().customize(oauth2);
                     oauth2.userInfoEndpoint(infoEndpoint ->
                             infoEndpoint.userService(oauth2UserService)
                     );
-                    oauth2.defaultSuccessUrl("/user", false);
+                    oauth2.defaultSuccessUrl(HOME_ENDPOINT, false);
                 })
                 .authenticationProvider(daoAuthenticationProvider())
-                .logout(logout -> logout.logoutUrl("/auth/logout")
-                        .logoutSuccessUrl("/login.html")
+                .logout(logout -> logout.logoutUrl(LOGOUT_URL)
+                        .logoutSuccessUrl(LOGIN_PAGE)
                         .addLogoutHandler(logoutHandler())
                         .deleteCookies()
                         .logoutSuccessHandler(

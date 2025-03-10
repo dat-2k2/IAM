@@ -1,4 +1,4 @@
-package datto.example.dto.user;
+package iam.base.dto.user;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

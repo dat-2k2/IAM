@@ -1,8 +1,7 @@
-package datto.example.exception.handler;
+package iam.base.exception.handler;
 
-import datto.example.exception.UserExistedException;
+import iam.base.exception.UserExistedException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

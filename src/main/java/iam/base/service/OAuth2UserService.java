@@ -1,9 +1,9 @@
-package datto.example.service;
+package iam.base.service;
 
-import datto.example.dto.auth.OAuth2UserInfoDto;
-import datto.example.dto.auth.UserPrincipal;
-import datto.example.entities.user.User;
-import datto.example.repos.UserRepository;
+import iam.base.dto.auth.OAuth2UserInfoDto;
+import iam.base.dto.auth.UserPrincipal;
+import iam.base.entities.user.User;
+import iam.base.repos.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

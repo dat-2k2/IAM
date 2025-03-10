@@ -1,6 +1,6 @@
-package datto.example.repos;
+package iam.base.repos;
 
-import datto.example.entities.user.User;
+import iam.base.entities.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
