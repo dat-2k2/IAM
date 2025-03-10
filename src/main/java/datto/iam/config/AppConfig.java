@@ -1,4 +1,4 @@
-package iam.base.config;
+package datto.iam.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

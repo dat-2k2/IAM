@@ -1,4 +1,4 @@
-package iam.base.exception;
+package datto.iam.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

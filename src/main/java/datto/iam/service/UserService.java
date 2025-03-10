@@ -1,9 +1,9 @@
-package iam.base.service;
+package datto.iam.service;
 
-import iam.base.dto.user.RegisterForm;
-import iam.base.entities.user.User;
-import iam.base.exception.UserExistedException;
-import iam.base.repos.UserRepository;
+import datto.iam.dto.user.RegisterForm;
+import datto.iam.entities.user.User;
+import datto.iam.exception.UserExistedException;
+import datto.iam.repos.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

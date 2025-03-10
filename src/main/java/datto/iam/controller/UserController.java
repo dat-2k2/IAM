@@ -1,9 +1,9 @@
-package iam.base.controller;
+package datto.iam.controller;
 
-import iam.base.dto.auth.UserPrincipal;
-import iam.base.dto.user.RegisterForm;
-import iam.base.entities.user.User;
-import iam.base.service.UserService;
+import datto.iam.dto.auth.UserPrincipal;
+import datto.iam.service.UserService;
+import datto.iam.dto.user.RegisterForm;
+import datto.iam.entities.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

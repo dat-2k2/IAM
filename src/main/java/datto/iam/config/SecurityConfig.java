@@ -1,8 +1,8 @@
-package iam.base.config;
+package datto.iam.config;
 
-import iam.base.dto.auth.UserPrincipal;
-import iam.base.service.OAuth2UserService;
-import iam.base.service.UserService;
+import datto.iam.dto.auth.UserPrincipal;
+import datto.iam.service.OAuth2UserService;
+import datto.iam.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
