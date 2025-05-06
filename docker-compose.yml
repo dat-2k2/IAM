@@ -1,5 +1,6 @@
 services:
   app:
+    image: iam:latest
     container_name: app
     depends_on:
       - db
@@ -9,17 +10,18 @@ services:
       dockerfile: Dockerfile
       args:
         - JAR_PATH=build/libs/*-SNAPSHOT.jar
-        - RESOURCE_PATH=build/resources/main
+        - RESOURCE_PATH=build/resources/main/
+#    network_mode: host
     deploy:
       resources:
         limits:
           cpus: '0.50'
-          memory: 50M
+          memory: 256M
         reservations:
           cpus: '0.25'
-          memory: 20M
+          memory: 128M
     ports:
-      - "127.0.0.1:8888:8888"
+      - "127.0.0.1:8080:8081"
 
   db:
     image: postgres:latest
@@ -30,8 +32,7 @@ services:
       POSTGRES_USER: ${IAM_DB_USERNAME}
       POSTGRES_PASSWORD: ${IAM_DB_PASSWORD}
       POSTGRES_DB: ${IAM_DB_NAME}
-    ports:
-      - '127.0.0.1:${IAM_DB_PORT}:${IAM_DB_PORT}'
+      PGPORT: ${IAM_DB_PORT}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
